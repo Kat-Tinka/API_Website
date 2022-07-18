@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <title>Ginger-Suricatas_M1_P2_S2-API-Website_spoonacular-API</title>
+  </head>
 
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-   <title>Ginger-Suricatas_M1_P2_S2-API-Website_spoonacular-API</title>
-</head>
-
-<body>
-
+  <body>
     <!-- try bootstrap navbar code  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">My Holy Broccoli</a>
-            <!-- <form action="/action_page.php">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">My Holy Broccoli</a>
+        <!-- <form action="/action_page.php">
                 <input type="checkbox" id="" name="vegetarian1" value="vegetarian">
                 <label for="vehicle1"> Vegetarian</label><br>
                 <input type="checkbox" id="" name="vegan2" value="vegan">
@@ -26,48 +29,67 @@
                 <label for="vehicle1"> Pescetarian</label><br><br>
                 <input type="submit" value="Submit">
             </form> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <!-- <li class="nav-item">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>
                     </li> -->
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
         </div>
+      </div>
     </nav>
 
-    
-
-
-   <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -100,49 +122,25 @@
 </div>
 </nav> -->
 
- <h2 class="m-4">vegan & vegetarian recipes</h2>
- <div id="container"  class="d-flex flex-row flex-wrap gap-4 m-4">
-  
- </div>
+    <h2 class="m-4">vegan & vegetarian recipes</h2>
+    <div id="container" class="d-flex flex-row flex-wrap gap-4 m-4"></div>
 
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
- <script src="response.js"></script>
- <script src="findByIngredientsData.js"></script>
- <script src="main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
 
-</body>
+    <!-- to get access to the API-Data (without showing the API-Key for others, therefore I created the variable "API_KEY"(see config-file), which I have to put inside the API Url-Link(replace the key-number inside), I have now to link the config-file to my index.html (for me:spike"dynamic search" 31:10 min)-->
+    <script src="config1.js"></script>
+
+    <!-- the "response.js"-file shows safed data, this is not live data search: -->
+    <!-- <script src="response.js"></script> -->
+
+    <!-- the following data call is NO LIVE REQUEST CALL: <script src="findByIngredientsData.js"></script> -->
+    <script src="findByIngredientsData.js"></script>
+
+    <script src="main2.js"></script>
+    <!-- <script src="main.js"></script> -->
+  </body>
 </html>
-
-<!-- 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
- </button>
- <div> class="collapse navbar-collapse"
-    
-   <a class="nav-brand" href="">MyHolyBroccoli</a>
-   <ul class="navbar-nav ms-auto"
-
-       <li class="nav-item">
-           <a class="nav-link" href="">Frühstück</a>
-       </li>
-       <li class="nav-item">
-           <a class="nav-link" href="">Mittagessen</a>
-       </li>
-       <li class="nav-item">
-           <a class="nav-link" href="">Abendessen</a>
-       </li>
-       <li class="nav-item">
-           <a class="nav-link" href="">Snack</a>
-       </li>
-       <li class="nav-item">
-   <a class="nav-link" href="">Zubereitungsdauer</a>
-</li>
-<li class="nav-item" href="">
-   <a class="nav-link" href="">Download</a>
-</li>
-</ul>
-</div>
-</nav>
-<h1>My Holy Broccoli</h1>
-<h2>vegan & vegetarian recipes</h2> -->

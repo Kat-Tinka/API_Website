@@ -58,7 +58,7 @@ for (let i = 0; i < checkboxArray.length; i++) {
   //ich hänge an den checkboxContainer= parent-element das childElemnt (= checkBoxes)dran
   checkBoxContainer.appendChild(checkBoxes);
 
-  //create label (als Beschrifttung -> "vegetarina", etc)
+  //create label (als Beschriftung -> "vegetarina", etc)
   // ich kreiere ein Element des Typs "label" und benenne es "label", damit ich es später ansprechen kann
   let labels = document.createElement("label");
   //ich setze das Attribut "for" um das LAbel an das input ELement mit der ID "checkboxId" zu verknüpfen

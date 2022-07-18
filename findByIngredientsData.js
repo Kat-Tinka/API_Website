@@ -1,3 +1,5 @@
+//this is my manually copied data file from the response in Postman (for spoonacular.com API and the choosed endpoint API: "findIngredientsByData")-> so that I won't use any live data requests in spoonacular , which are limited to 150 live requests daily. -Later ,when my code is quiet "ready", I will use the live data  from my API directly.
+
 const findByIngredientsData = [
   {
     id: 640803,

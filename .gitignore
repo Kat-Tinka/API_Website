@@ -1,0 +1,5 @@
+# "config.js" is the file, which we want to hide from gitHub, but because I already pushed the project on GitHub (with this empty file ) , the file is visible.
+config.js
+
+# "config1.js to ignore " 
+config1.js
