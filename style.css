@@ -1,0 +1,8 @@
+/* Hide & Show Button for more and less Broccoli-Infos */
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
