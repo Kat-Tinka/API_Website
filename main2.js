@@ -28,24 +28,24 @@ function getData() {
 }
 
 // the uncommented command "getData();" ( see below) in main2.js together with the also uncommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests of 150! For practice purposes , you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes)
-// getData();
-createCards(findByIngredientsData);
+getData();
+// createCards(findByIngredientsData);
 
 // to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
 //In order to get the the live data from the .then-block, I need to call the function below ( function create Cards () from  the .then-Block!)
-function createCards(findByIngredientsData) {
-  console.log(findByIngredientsData);
+function createCards(data) {
+  console.log(data);
   const recipiesContainer = document.getElementById("container");
 
   // create a loop, and for each element of array create a card
-  for (let i = 0; i < findByIngredientsData.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     let divCard = document.createElement("div");
     divCard.classList.add("card");
     divCard.setAttribute("class", "card");
     recipiesContainer.appendChild(divCard);
 
     let img = document.createElement("img");
-    img.setAttribute("src", findByIngredientsData[i].image);
+    img.setAttribute("src", data[i].image);
     img.setAttribute("class", "card-img-top");
     img.style.width = "18rem";
 

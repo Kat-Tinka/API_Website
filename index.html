@@ -76,10 +76,13 @@
           </ul>
           <form class="d-flex" role="search">
             <input
+              id="search-input"
+              value=""
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onchange="readSearch()"
             />
             <button class="btn btn-outline-success" type="submit">
               Search
@@ -135,12 +138,13 @@
     <script src="config1.js"></script>
 
     <!-- the "response.js"-file shows safed data, this is not live data search: -->
-    <!-- <script src="response.js"></script> -->
+    <script src="response.js"></script>
+    <script src="main.js"></script>
 
     <!-- the following data call is NO LIVE REQUEST CALL: <script src="findByIngredientsData.js"></script> -->
     <script src="findByIngredientsData.js"></script>
-
-    <script src="main2.js"></script>
-    <!-- <script src="main.js"></script> -->
+    <!-- in the following  script src "<script src="main2.js"></script>",you get LIVE DATA RESPONSES-> see also: fetch function "getData()"" in main2.js -->
+    <!-- <script src="main2.js"></script> -->
+    <!-- <script src="main2WithoutComments.js"></script> -->
   </body>
 </html>
