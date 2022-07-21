@@ -19,17 +19,16 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">My Holy Broccoli</a>
-        <!-- <form action="/action_page.php">
-                <input type="checkbox" id="" name="vegetarian1" value="vegetarian">
-                <label for="v1"> Vegetarian</label><br>
-                <input type="checkbox" id="" name="vegan2" value="vegan">
-                <label for="v2"> Vegan</label><br>
-                <input type="checkbox" id="" name="carnovore3" value="carnovore">
-                <label for="v3"> Carnovore</label><br>
-                <input type="checkbox" id="" name="" value="pescetarian">
-                <label for="v4"> Pescetarian</label><br><br>
-                <input type="submit" value="Submit">
-            </form> -->
+   <form class="d-flex" role="search">
+            <input
+              id="search-input"
+              value=""
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              onchange="readSearch()"
+            />
         <button
           class="navbar-toggler"
           type="button"
@@ -75,17 +74,8 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li> -->
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              id="search-input"
-              value=""
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              onchange="readSearch()"
-            />
-            <button class="btn btn-outline-success" type="submit">
+       
+            <button class="btn btn-outline-success buttonOverwrite" type="submit">
               Search
             </button>
           </form>
@@ -93,6 +83,17 @@
       </div>
     </nav>
 
+    <form action="/action_page.php" class="checkBoxes">
+      <input type="checkbox" id="" name="vegetarian1" value="vegetarian" />
+      <label for="v1"> Vegetarian</label><br />
+      <input type="checkbox" id="" name="vegan2" value="vegan" />
+      <label for="v2"> Vegan</label><br />
+      <input type="checkbox" id="" name="carnivore3" value="carnivore" />
+      <label for="v3"> Carnivore</label><br />
+      <input type="checkbox" id="" name="" value="pescetarian" />
+      <label for="v4"> Pescetarian</label><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -134,28 +135,28 @@
       Maybe you found me because you are hungry or because you are obsessed with
       BROCCOLI, like me, or because a friend told you to visit this Website to
       get some cooking inspiration. Don't be afraid, it's not everything about
-      this green and healthy vegetable ( It belongs to the 10 healthiest foods
+      this green and healthy vegetable (But: It belongs to the 10 healthiest foods
       in the world!). You can find here other recepies too! Anyway, I am happy
       that you came to vistit me! - and here...(drum roll...)
     </p>
 
-    <p id="secondary-text" class="hide">
-      ...are some infos about Brrrroccoli (Right, you guessed it):
-      <!-- </p>
-    <p id="nutrition-facts-text" class="hide"> -->
-      Nutrition Facts and Health Benefits Broccoli is very low in calories,
-      providing only 31 calories per cup (91 grams). The nutrition facts for 1
-      cup (91 grams) of raw broccoli are ( 3 ):Calories: 31 Water: 89% Protein:
-      2.5 grams Carbs: 6 grams Sugar: 1.5 grams Fiber: 2.4 grams Fat: 0.4 grams
-      <!-- </p> -->
-      <!-- <ul>Calories: 31</ul>
-      <ul>Water: 89%</ul>
-      <ul>Protein: 2.5 grams</ul>
-      <ul>Carbs: 6 grams</ul>
-      <ul>Sugar: 1.5 grams</ul>
-      <ul>Fiber: 2.4 grams</ul>
-      <ul>Fat: 0.4 grams</ul> -->
-    </p>
+    <div id="secondary-text" class="hide">
+      ...are some infos about Brrrroccoli (Right, you guessed it): 
+      <br> <br>
+      <h5>Nutrition Facts and Health Benefits:</h5>
+      Broccoli is very low in calories,
+      providing only 31 calories per cup (91 grams). The nutrition facts for 1 cup (91 grams) of raw broccoli are ( 3 ): 
+      <br> 
+      <ul>
+        <li>Calories: 31</li>
+        <li>Water: 89%</li>
+        <li>Protein: 2.5 grams</li>
+        <li>Carbs: 6 grams</li>
+        <li>Sugar: 1.5 grams</li>
+        <li>Fiber: 2.4 grams</li>
+        <li>Fat: 0.4 grams</li>
+      </ul>
+    </div>
 
     <button onclick="showHide(event)">Read more if you dare</button>
 

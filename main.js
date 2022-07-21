@@ -184,7 +184,4 @@ function displayData(recipes) {
 // when the fetch function is declared and called, we get the live data response, so  displayData(); is not necessary any more-> therefore I commented it out
 // displayData();
 
-
-function readSearch("event",event) {
-  
-}
+function readSearch(event) {}
