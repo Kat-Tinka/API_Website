@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">My Holy Broccoli</a>
-   <form class="d-flex" role="search">
+   <div class="d-flex" role="search">
             <input
               id="search-input"
               value=""
@@ -27,8 +27,10 @@
               type="search"
               placeholder="Search"
               aria-label="Search"
-              onchange="readSearch()"
             />
+            <button id="search-button" class="btn btn-outline-success buttonOverwrite">
+              Search
+            </button>
         <button
           class="navbar-toggler"
           type="button"
@@ -60,13 +62,13 @@
                 Dropdown
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">infos about different diets</a></li>
+                <li><a class="dropdown-item" href="#">main ingredients</a></li>
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="#">articles</a>
                 </li>
               </ul>
             </li>
@@ -75,10 +77,8 @@
                     </li> -->
           </ul>
        
-            <button class="btn btn-outline-success buttonOverwrite" type="submit">
-              Search
-            </button>
-          </form>
+            
+        </div>
         </div>
       </div>
     </nav>
