@@ -12,7 +12,7 @@ function getData() {
       return response.json();
     })
     // which also creates a second promise, so we need another .then-function withh a anonymous() callback, where we can receive the data ( all the broccoli data):
-    .then((data) => {
+    .then(function(data) => {
       //   console.log("data", data);
       // in order to get and show the LIVE DATA , I need to call this function "createCards()" from the.then-Block and send "data" as parameter over function( instead of createCards(data); we call it displayData sending the data)
       createCards(data);
