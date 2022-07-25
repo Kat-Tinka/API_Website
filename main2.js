@@ -1,3 +1,19 @@
+//function of "Hide & Show Button" for more and less Broccoli-Infos
+function showHide(event) {
+  console.log(event.target);
+  let mySecondaryText = document.getElementById("secondary-text");
+  let isHidden = Array.from(mySecondaryText.classList).includes("hide");
+  if (isHidden === true) {
+    mySecondaryText.classList.remove("hide");
+    mySecondaryText.classList.add("show");
+    event.target.innerHTML = "Read Less";
+  } else {
+    mySecondaryText.classList.remove("show");
+    mySecondaryText.classList.add("hide");
+    event.target.innerText = "Read More";
+  }
+}
+
 //try to fetch the data from the API
 
 //use of the google meeting function with O.

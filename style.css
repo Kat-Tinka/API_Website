@@ -1,0 +1,34 @@
+/* CheckBoxes-Style */
+
+/* Hide & Show Button for more and less Broccoli-Infos */
+
+body {
+  background-color: #198754;;
+  color: #fff;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.checkBoxes label {
+  color: fff !important;
+  font-size: 23px;
+}
+form.checkBoxes {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+/* Nav-Bar Search Button Hover */
+.buttonOverwrite:hover {
+  border-color: white;
+  background-color: #198754;
+  color: white;
+}
+
+/* back-ground Color overwrite Bootstrap Style (color) */
+.backgroundColorOverwrite::content
