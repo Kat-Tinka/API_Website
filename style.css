@@ -3,7 +3,7 @@
 /* Hide & Show Button for more and less Broccoli-Infos */
 
 body {
-  background-color: #198754;;
+  background-color: #198754;
   color: #fff;
 }
 
@@ -13,11 +13,12 @@ body {
 .show {
   display: block;
 }
-.checkBoxes label {
-  color: fff !important;
-  font-size: 23px;
+.radioButtons label {
+  color: black !important;
+  font-size: 15px;
+  padding: auto;
 }
-form.checkBoxes {
+div.radioButtons {
   display: flex;
   justify-content: right;
   align-items: center;
@@ -31,4 +32,8 @@ form.checkBoxes {
 }
 
 /* back-ground Color overwrite Bootstrap Style (color) */
-.backgroundColorOverwrite::content
+/* .backgroundColorOverwrite:content */
+
+/* element.card-title.h5 {
+  color: #198754;
+} */

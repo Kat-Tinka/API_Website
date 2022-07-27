@@ -18,82 +18,108 @@
     <!-- try bootstrap navbar code  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">My Holy Broccoli</a>
-   <div class="d-flex" role="search">
-            <input
-              id="search-input"
-              value=""
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button id="search-button" class="btn btn-outline-success buttonOverwrite">
-              Search
-            </button>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">infos about different diets</a></li>
-                <li><a class="dropdown-item" href="#">main ingredients</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">articles</a>
-                </li>
-              </ul>
-            </li>
-            <!-- <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li> -->
-          </ul>
-       
-            
-        </div>
+        <a class="navbar-brand" hre f="#">My Holy Broccoli</a>
+
+        <div class="d-flex" role="search">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a class="dropdown-item" href="#"
+                      >infos about different diets</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">main ingredients</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">articles</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li> -->
+            </ul>
+          </div>
+          <input
+            id="search-input"
+            value="broccoli"
+            class="form-control me-2"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button
+            id="search-button"
+            class="btn btn-outline-success buttonOverwrite"
+          >
+            Search
+          </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
       </div>
     </nav>
 
-    <form action="/action_page.php" class="checkBoxes">
-      <input type="checkbox" id="" name="vegetarian1" value="vegetarian" />
-      <label for="v1"> Vegetarian</label><br />
-      <input type="checkbox" id="" name="vegan2" value="vegan" />
-      <label for="v2"> Vegan</label><br />
-      <input type="checkbox" id="" name="carnivore3" value="carnivore" />
-      <label for="v3"> Carnivore</label><br />
-      <input type="checkbox" id="" name="" value="pescetarian" />
-      <label for="v4"> Pescetarian</label><br /><br />
-      <input type="submit" value="Submit" />
-    </form>
+    <div class="radioButtons">
+      <input type="radio" id="vegetarianID" name="diets" value="vegetarian" />
+      <label for="vegetarianID">Vegetarian</label><br />
+      <input type="radio" id="veganID" name="diets" value="vegan" />
+      <label for="veganID">Vegan</label><br />
+      <input type="radio" id="paleoID" name="diets" value="paleo" />
+      <label for="paleoID">Paleo</label><br />
+      <input type="radio" id="pescetarianID" name="diets" value="pescetarian" />
+      <label for="pescetarianID">Pescetarian</label><br /><br />
+      <input type="radio" id="whole30ID" name="diets" value="whole30" />
+      <label for="whole30ID">Whole30</label><br />
+      <input
+        type="radio"
+        id="lactoVegetarianID"
+        name="diets"
+        value="lacto-Vegetarian"
+      />
+      <label for="lactoVegetarianID">Lacto-Vegetarian</label><br />
+      <input
+        type="radio"
+        id="ovoVegetarianID"
+        name="diets"
+        value="ovo-Vegetarian"
+      />
+      <label for="ovoVegetarianID">Ovo-Vegetarian</label><br />
+      <input type="radio" id="allRecipesID" name="diets" value="" />
+      <label for="allRecipesID">all Recipes</label>
+      <!-- <input type="submit" value="Submit" /> -->
+    </div>
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -135,18 +161,20 @@
       Maybe you found me because you are hungry or because you are obsessed with
       BROCCOLI, like me, or because a friend told you to visit this Website to
       get some cooking inspiration. Don't be afraid, it's not everything about
-      this green and healthy vegetable (But: It belongs to the 10 healthiest foods
-      in the world!). You can find here other recepies too! Anyway, I am happy
-      that you came to vistit me! - and here...(drum roll...)
+      this green and healthy vegetable (But: It belongs to the 10 healthiest
+      foods in the world!). You can find here other recepies too! Anyway, I am
+      happy that you came to vistit me! - and here...(drum roll...)
     </p>
 
     <div id="secondary-text" class="hide">
-      ...are some infos about Brrrroccoli (Right, you guessed it): 
-      <br> <br>
+      ...are some infos about Brrrroccoli (Right, you guessed it):
+      <br />
+      <br />
       <h5>Nutrition Facts and Health Benefits:</h5>
-      Broccoli is very low in calories,
-      providing only 31 calories per cup (91 grams). The nutrition facts for 1 cup (91 grams) of raw broccoli are ( 3 ): 
-      <br> 
+      Broccoli is very low in calories, providing only 31 calories per cup (91
+      grams). The nutrition facts for 1 cup (91 grams) of raw broccoli are ( 3
+      ):
+      <br />
       <ul>
         <li>Calories: 31</li>
         <li>Water: 89%</li>
