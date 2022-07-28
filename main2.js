@@ -13,15 +13,14 @@ function showHide(event) {
   }
 }
 
-//try to fetch the data from the API
-
-//use of the google meeting function with O.
+//try to fetch the data from the API with chosen parameters ->like (my)ingredient, diet, cuisine,
 let myIngredient = "broccoli";
 let diet = "";
-function getData(myIngredient, diet) {
+let cuisine = "";
+function getData(myIngredient, diet, cuisine) {
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=bd1c7921086d472db5785a2dfd295b73&query=${myIngredient}&number=10&diet=${diet}`
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=97f94ba9f77f4a4da105029182009cc1&query=${myIngredient}&number=10&diet=${diet}&cuisine=${cuisine}`
   )
     .then(function (response) {
       //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must
@@ -46,11 +45,16 @@ function getData(myIngredient, diet) {
     });
 }
 
-// the uncommented command "getData();" ( see below) in main2.js together with the also uncommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests of 150! For practice purposes , you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes)
-getData(myIngredient, diet);
-// createCards(findByIngredientsData);
+// the uncommented command "getData();" ( see below) in main2.js together with the also uncommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests of 150! For practice purposes , you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes).
 
-// to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
+// The window onload function is not a MutationObserver, but it bundles the get Data(myIngredient, diet, cuisine when loading the page)
+window.onload = function () {
+  getData(myIngredient, diet, cuisine);
+  createEvents();
+};
+
+//past task wto get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
+
 //In order to get the the live data from the .then-block, I need to call the function below ( function create Cards () from  the .then-Block!)
 function createCards(data) {
   const recipiesContainer = document.getElementById("container");
@@ -62,6 +66,7 @@ function createCards(data) {
     divCard.setAttribute("class", "card");
     recipiesContainer.appendChild(divCard);
 
+    // add titles to the cards
     let title = document.createElement("h5");
     title.setAttribute("class", "card-title");
     title.setAttribute("style", "color:#198754");
@@ -142,7 +147,8 @@ function createEvents() {
   mySearchButton.addEventListener("click", function (event) {
     let myInput = document.getElementById("search-input");
     myIngredient = myInput.value;
-    getData(myInput.value, diet);
+    getData(myInput.value, diet, cuisine);
+    console.log("myIngredient:", myIngredient);
   });
 
   // to select the radio buttons with querySelectorAll-this works:
@@ -151,7 +157,8 @@ function createEvents() {
   for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function (event) {
       diet = event.target.value;
-      getData(myIngredient, diet);
+      getData(myIngredient, diet, cuisine);
+      console.log("diet:", diet);
     });
     // radio.onchange = (e) => {
     //   diet = e.target.value;
@@ -159,10 +166,87 @@ function createEvents() {
     // };
   }
 
-  // add event to all radio buttons
-  // when one of them is changed you retrieve the value of the radio button & you call getData with that value
+  // select the checked check-Boxes
+  let checkbox = document.querySelectorAll("input[type='checkbox']");
 
-  // diet = "vegetarian"
-  // getData(myIngredient, "vegetarian")
+  for (let c = 0; c < checkbox.length; c++) {
+    checkbox[c].addEventListener("change", function (event) {
+      cuisine = event.target.value;
+      getData(myIngredient, diet, cuisine);
+      console.log("cuisine:", cuisine);
+    });
+  }
 }
-createEvents();
+
+// get the values of onne or more checked checkBoxes "Cuisine"
+let buttonSubmit = document.getElementById("btnSubmit");
+let values = [];
+buttonSubmit.addEventListener("click", function (e) {
+  e.preventDefault();
+  let checkBoxes = document.getElementsByName("cuisine");
+  // console.log("checkBoxes:", checkBoxes);
+  for (let c = 0; c < checkBoxes.length; c++) {
+    if (checkBoxes[c].checked == true) {
+      console.log("chosen cuisine(s)", checkBoxes[c].value);
+      values.push(checkBoxes[c].value);
+    }
+    // const element = array[c];
+  }
+  console.log("The value(s): " + values.toString());
+  getData(myIngredient, diet, values.toString());
+  // alert("The value(s): " + values.toString());
+});
+
+// event for all checked checkButtons
+
+function checkUncheck() {
+  let checkbox = document.getElementById("");
+  if (checkBoxes.checked) {
+    checkBoxes.checked = false;
+  } else {
+    checkBoxes.checked = true;
+  }
+}
+
+// TODO put this block of code into a function
+// TODO call the function
+// TODO get recies with all cusines / default value without cusine
+let isAllChecked = false;
+document.getElementById("btnCheckAll").onclick = function (e) {
+  let checkBoxes = document.getElementsByName("cuisine");
+  if (isAllChecked) {
+    for (let c = 0; c < checkBoxes.length; c++) {
+      checkBoxes[c].checked = false;
+    }
+  } else {
+    for (let c = 0; c < checkBoxes.length; c++) {
+      checkBoxes[c].checked = true;
+    }
+  }
+  isAllChecked = !isAllChecked;
+};
+
+// event for all checked checkButtons
+// document.getElementById("btnCheckAll").onclick = function (e) {
+//   e.preventDefault();
+//   let checkBoxes = document.getElementsByName("cuisine");
+//   for (let c = 0; c < checkBoxes.length; c++) {
+//     checkBoxes[c].checked = true;
+//   }
+// };
+
+// let markedCheckbox = (document.getElementById("checkbox").onclick =
+//   function () {
+//     let markedCheckbox = document.querySelectorAll(
+//       'input[type="checkbox"]:checked'
+//     );
+//     for (let checkbox of markedCheckbox) {
+//       document.body.append(checkbox.value + " ");
+//     }
+//   });
+
+// add event to all radio buttons
+// when one of them is changed you retrieve the value of the radio button & you call getData with that value
+
+// diet = "vegetarian"
+// getData(myIngredient, "vegetarian")

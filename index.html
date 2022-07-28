@@ -24,10 +24,14 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">Home</a>
+                <!-- <a class="nav-link active" aria-current="page" href="">Home</a> -->
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a
+                  class="nav-link"
+                  href="vecteezy_broccoli-on-a-white-background-hand-drawn-vegetable-vector_6122419.jpg"
+                  >Just a Broccoli</a
+                >
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -37,13 +41,12 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  >Food Infos</a
                 >
-                  Dropdown
-                </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item" href="#"
-                      >infos about different diets</a
+                    <a class="dropdown-item" href="dietInfos.html"
+                      >diet infos</a
                     >
                   </li>
                   <li>
@@ -100,6 +103,14 @@
       <label for="paleoID">Paleo</label><br />
       <input type="radio" id="pescetarianID" name="diets" value="pescetarian" />
       <label for="pescetarianID">Pescetarian</label><br /><br />
+      <input type="radio" id="glutenFreeID" name="diets" value="gluten free" />
+      <label for="glutenFreeID">Gluten Free</label><br />
+      <input type="radio" id="ketogenicID" name="diets" value="ketogenic" />
+      <label for="ketogenicID">Ketogenic</label><br />
+      <input type="radio" id="primalID" name="diets" value="primal" />
+      <label for="primalID">Primal</label><br />
+      <input type="radio" id="lowFodmapID" name="diets" value="lowFodmap" />
+      <label for="lowFodmapID">Low FODMAP</label><br />
       <input type="radio" id="whole30ID" name="diets" value="whole30" />
       <label for="whole30ID">Whole30</label><br />
       <input
@@ -120,7 +131,83 @@
       <label for="allRecipesID">all Recipes</label>
       <!-- <input type="submit" value="Submit" /> -->
     </div>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!-- Create Checkboxes -->
+    <div id="frm-cuisine">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="African"
+          id="africanID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="africanID"> African </label>
+      </div>
+      <br />
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="American"
+          id="americanID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="americanID"> American </label>
+      </div>
+      <br />
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="Chinese"
+          id="chineseID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="chineseID"> Chinese </label>
+      </div>
+      <br />
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="Eastern European"
+          id="easternEuropeanID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="easternEuropeanID">
+          Eastern European
+        </label>
+      </div>
+      <br />
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="European"
+          id="europeanID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="europeanID"> European </label>
+      </div>
+      <br />
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value="French"
+          id="frenchID"
+          name="cuisine"
+        />
+        <label class="form-check-label" for="frenchIDs"> French </label>
+      </div>
+      <br /><br />
+      <button type="checkbox" id="btnSubmit">Submit</button>
+      <button type="checkbox" id="btnCheckAll">Check/Uncheck All</button>
+    </div>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -163,7 +250,7 @@
       get some cooking inspiration. Don't be afraid, it's not everything about
       this green and healthy vegetable (But: It belongs to the 10 healthiest
       foods in the world!). You can find here other recepies too! Anyway, I am
-      happy that you came to vistit me! - and here...(drum roll...)
+      happy that you came to visit me! - and here...(drum roll...)
     </p>
 
     <div id="secondary-text" class="hide">
@@ -207,6 +294,7 @@
     <!-- <script src="findByIngredientsData.js"></script> -->
     <!-- in the following  script src "<script src="main2.js"></script>",you get LIVE DATA RESPONSES-> see also: fetch function "getData()"" in main2.js -->
     <script src="main2.js"></script>
+    <!-- <script src="complexSearchCuisine.js"></script> -->
     <!-- <script src="main2WithoutComments.js"></script> -->
   </body>
 </html>

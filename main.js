@@ -8,7 +8,7 @@ function getData() {
     .then(function (response) {
       //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must
       console.log(2);
-      // return response.json is a promise ( which transforms the resonse into a readable json file)
+      // return response.json is a promise ( which transforms the response into a readable json file)
       return response.json();
     })
     // which also creates a second promise, so we need another .then-function withh a anonymous() callback, where we can receive the data ( all the broccoli data):

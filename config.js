@@ -1,4 +1,4 @@
-//DONT USE THIS FILE- it's only for demo
+//DONT USE THIS FILE- it's only for demo!
 
 // here you put your personal API Key, (which you have to put in quotation marks, because the Key can contain also letters), which you connect with the ".ingnore"-file , because you don't want to make your personal key visible for others. BUT: Because I already created this file and pushed the (empty) file to GitHub , the file is visible on GitHub.
 
