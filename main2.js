@@ -224,9 +224,6 @@ function createEvents() {
 // });
 
 // event for all checked checkButtons
-// TODO put this block of code into a function
-// TODO call the function
-// TODO get recies with all cusines / default value without cusine
 let isAllChecked = false;
 document.getElementById("btnCheckAll").onclick = function (e) {
   let checkBoxes = document.getElementsByName("cuisine");
@@ -241,6 +238,12 @@ document.getElementById("btnCheckAll").onclick = function (e) {
   }
   isAllChecked = !isAllChecked;
 };
+
+// TODO delete submit (checkbox)button - it has no function anymore
+// TODO put this block of code into a function
+// TODO call the function
+// TODO get recipes with all cusines / default value without cusine^
+// TODO maybe write a function, which allows to put more than one ingredient into the search input(?)
 
 // event for all checked checkButtons
 // document.getElementById("btnCheckAll").onclick = function (e) {
