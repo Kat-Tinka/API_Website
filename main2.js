@@ -18,6 +18,9 @@ let myIngredient = "broccoli";
 let diet = "";
 let cuisine = "";
 function getData(myIngredient, diet, cuisine) {
+  console.log("myIngredient", myIngredient);
+  console.log("diet", diet);
+  console.log("cuisine", cuisine);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=97f94ba9f77f4a4da105029182009cc1&query=${myIngredient}&number=6&diet=${diet}&cuisine=${cuisine}`;
   console.log(url);
@@ -148,7 +151,6 @@ function createEvents() {
     let myInput = document.getElementById("search-input");
     myIngredient = myInput.value;
     getData(myInput.value, diet, cuisine);
-    console.log("myIngredient:", myIngredient);
   });
 
   // to select the radio buttons with querySelectorAll-this works:
@@ -158,7 +160,6 @@ function createEvents() {
     radios[i].addEventListener("change", function (event) {
       diet = event.target.value;
       getData(myIngredient, diet, cuisine);
-      console.log("diet:", diet);
     });
     // radio.onchange = (e) => {
     //   diet = e.target.value;
@@ -168,61 +169,61 @@ function createEvents() {
 
   // select the checked check-Boxes
   let checkbox = document.querySelectorAll("input[type='checkbox']");
-  console.log("checkbox", checkbox);
+
   let checkedValues = [];
   for (let c = 0; c < checkbox.length; c++) {
     checkbox[c].addEventListener("change", function (event) {
-      cuisine = event.target.value;
-      // let checkedCheckboxes = document.querySelectorAll(
-      //   "input[type='checkbox']:checked"
-      // );
-      for (let c = 0; c < checkbox.length; c++) {
-        let checkedCheckboxes = document.querySelectorAll(
-          "input[type='checkbox']:checked"
-        );
-        checkedValues.push(checkedCheckboxes[c].value);
+      if (checkbox[c].checked == true) {
+        checkedValues.push(checkbox[c].value);
+      } else {
+        // SPLICE METHOD AFTER FINDING OUT THE INDEX WITH INDEXOF METHOD
+        // console.log("checkbox[c].value", checkbox[c].value);
+        // console.log("checkedValues", checkedValues);
+        // const cuisineToRemoveIndex = checkedValues.indexOf(checkbox[c].value);
+        // console.log("cuisineToRemoveIndex", cuisineToRemoveIndex);
+        // checkedValues.splice(cuisineToRemoveIndex, 1);
+
+        // FILTER METHOD
+        // const filteredCuisine = checkedValues.filter(function (myValue) {
+
+        // })
+        const filteredCuisine = checkedValues.filter((myValue) => {
+          return myValue !== checkbox[c].value;
+        });
+        console.log("filteredCuisine", filteredCuisine);
+        checkedValues = filteredCuisine;
       }
 
       // getData(myIngredient, diet, cuisine);
-      console.log("cuisine:", checkedCheckboxes);
-      console.log("checkedValues", checkedValues);
+      cuisine = checkedValues.toString();
+      getData(myIngredient, diet, checkedValues.toString());
     });
   }
 }
 
-// get the values of one or more checked checkBoxes "Cuisine"
-let buttonSubmit = document.getElementById("btnSubmit");
-let values = [];
-buttonSubmit.addEventListener("click", function (e) {
-  e.preventDefault();
-  let checkBoxes = document.getElementsByName("cuisine");
-  // console.log("checkBoxes:", checkBoxes);
-  for (let c = 0; c < checkBoxes.length; c++) {
-    if (checkBoxes[c].checked == true) {
-      console.log("chosen cuisine(s)", checkBoxes[c].value);
-      values.push(checkBoxes[c].value);
-    } else {
-      if (checkBoxes[c].checked == !true) {
-      }
-    }
-    // const element = array[c];
-  }
-  console.log("The value(s): " + values.toString());
-  getData(myIngredient, diet, values.toString());
-  // alert("The value(s): " + values.toString());
-});
+// // get the values of one or more checked checkBoxes "Cuisine"
+// let buttonSubmit = document.getElementById("btnSubmit");
+// let values = [];
+// buttonSubmit.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   let checkBoxes = document.getElementsByName("cuisine");
+//   // console.log("checkBoxes:", checkBoxes);
+//   for (let c = 0; c < checkBoxes.length; c++) {
+//     if (checkBoxes[c].checked == true) {
+//       console.log("chosen cuisine(s)", checkBoxes[c].value);
+//       values.push(checkBoxes[c].value);
+//     } else {
+//       if (checkBoxes[c].checked == !true) {
+//       }
+//     }
+//     // const element = array[c];
+//   }
+//   console.log("The value(s): " + values.toString());
+//   getData(myIngredient, diet, values.toString());
+//   // alert("The value(s): " + values.toString());
+// });
 
 // event for all checked checkButtons
-
-function checkUncheck() {
-  let checkbox = document.getElementById("");
-  if (checkBoxes.checked) {
-    checkBoxes.checked = false;
-  } else {
-    checkBoxes.checked = true;
-  }
-}
-
 // TODO put this block of code into a function
 // TODO call the function
 // TODO get recies with all cusines / default value without cusine
