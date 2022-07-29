@@ -19,9 +19,9 @@ let diet = "";
 let cuisine = "";
 function getData(myIngredient, diet, cuisine) {
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
-  fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=97f94ba9f77f4a4da105029182009cc1&query=${myIngredient}&number=10&diet=${diet}&cuisine=${cuisine}`
-  )
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=97f94ba9f77f4a4da105029182009cc1&query=${myIngredient}&number=6&diet=${diet}&cuisine=${cuisine}`;
+  console.log(url);
+  fetch(url)
     .then(function (response) {
       //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must
 
@@ -53,7 +53,7 @@ window.onload = function () {
   createEvents();
 };
 
-//past task wto get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
+//past task to get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
 
 //In order to get the the live data from the .then-block, I need to call the function below ( function create Cards () from  the .then-Block!)
 function createCards(data) {
@@ -168,17 +168,29 @@ function createEvents() {
 
   // select the checked check-Boxes
   let checkbox = document.querySelectorAll("input[type='checkbox']");
-
+  console.log("checkbox", checkbox);
+  let checkedValues = [];
   for (let c = 0; c < checkbox.length; c++) {
     checkbox[c].addEventListener("change", function (event) {
       cuisine = event.target.value;
-      getData(myIngredient, diet, cuisine);
-      console.log("cuisine:", cuisine);
+      // let checkedCheckboxes = document.querySelectorAll(
+      //   "input[type='checkbox']:checked"
+      // );
+      for (let c = 0; c < checkbox.length; c++) {
+        let checkedCheckboxes = document.querySelectorAll(
+          "input[type='checkbox']:checked"
+        );
+        checkedValues.push(checkedCheckboxes[c].value);
+      }
+
+      // getData(myIngredient, diet, cuisine);
+      console.log("cuisine:", checkedCheckboxes);
+      console.log("checkedValues", checkedValues);
     });
   }
 }
 
-// get the values of onne or more checked checkBoxes "Cuisine"
+// get the values of one or more checked checkBoxes "Cuisine"
 let buttonSubmit = document.getElementById("btnSubmit");
 let values = [];
 buttonSubmit.addEventListener("click", function (e) {
@@ -189,6 +201,9 @@ buttonSubmit.addEventListener("click", function (e) {
     if (checkBoxes[c].checked == true) {
       console.log("chosen cuisine(s)", checkBoxes[c].value);
       values.push(checkBoxes[c].value);
+    } else {
+      if (checkBoxes[c].checked == !true) {
+      }
     }
     // const element = array[c];
   }
