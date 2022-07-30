@@ -22,7 +22,7 @@ function getData(myIngredient, diet, cuisine) {
   console.log("diet", diet);
   console.log("cuisine", cuisine);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=97f94ba9f77f4a4da105029182009cc1&query=${myIngredient}&number=6&diet=${diet}&cuisine=${cuisine}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=5e3c0f30def64e1ba729347a1a4b34af&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url);
   fetch(url)
     .then(function (response) {
@@ -37,6 +37,7 @@ function getData(myIngredient, diet, cuisine) {
       // in order to get and show the LIVE DATA , I need to call this function "createCards()" from the.then-Block and send "data" as parameter over function:
 
       if (data.results.length === 0) {
+        createCards("");
         alert("No recipes found");
       } else {
         createCards(data.results);
@@ -201,6 +202,28 @@ function createEvents() {
   }
 }
 
+// TODO put this block of code (see:let isAllChecked = false;(...)) into a function
+// event for all checked checkButtons (at the beginning no btn is checked =>let isAllChecked = false; )
+
+let isAllChecked = false;
+document.getElementById("btnCheckAll").onclick = function (e) {
+  let checkBoxes = document.getElementsByName("cuisine");
+  if (isAllChecked) {
+    for (let c = 0; c < checkBoxes.length; c++) {
+      checkBoxes[c].checked = false;
+    }
+  } else {
+    for (let c = 0; c < checkBoxes.length; c++) {
+      checkBoxes[c].checked = true;
+    }
+  }
+  isAllChecked = !isAllChecked;
+  console.log("isAllChecked", isAllChecked);
+  document.querySelectorAll('input[type="checkbox"]:checked');
+  cuisine = isAllChecked.toString();
+  getData(myIngredient, diet, isAllChecked.toString());
+};
+
 // // get the values of one or more checked checkBoxes "Cuisine"
 // let buttonSubmit = document.getElementById("btnSubmit");
 // let values = [];
@@ -223,26 +246,9 @@ function createEvents() {
 //   // alert("The value(s): " + values.toString());
 // });
 
-// event for all checked checkButtons
-let isAllChecked = false;
-document.getElementById("btnCheckAll").onclick = function (e) {
-  let checkBoxes = document.getElementsByName("cuisine");
-  if (isAllChecked) {
-    for (let c = 0; c < checkBoxes.length; c++) {
-      checkBoxes[c].checked = false;
-    }
-  } else {
-    for (let c = 0; c < checkBoxes.length; c++) {
-      checkBoxes[c].checked = true;
-    }
-  }
-  isAllChecked = !isAllChecked;
-};
-
-// TODO delete submit (checkbox)button - it has no function anymore
-// TODO put this block of code into a function
 // TODO call the function
-// TODO get recipes with all cusines / default value without cusine^
+// TODO get recipes with all cusines / default value without cusine
+// TODO delete submit (checkbox)button - it has no function anymore
 // TODO maybe write a function, which allows to put more than one ingredient into the search input(?)
 
 // event for all checked checkButtons
