@@ -22,7 +22,7 @@ function getData(myIngredient, diet, cuisine) {
   console.log("diet", diet);
   console.log("cuisine", cuisine);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=5e3c0f30def64e1ba729347a1a4b34af&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url);
   fetch(url)
     .then(function (response) {
@@ -51,7 +51,7 @@ function getData(myIngredient, diet, cuisine) {
 
 // the uncommented command "getData();" ( see below) in main2.js together with the also uncommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests of 150! For practice purposes , you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes).
 
-// The window onload function is not a MutationObserver, but it bundles the get Data(myIngredient, diet, cuisine when loading the page)
+// The window onload function is not a must, but it bundles the get Data(myIngredient, diet, cuisine when loading the page -but this means also, that if you change omly one parameter , all of the "getData() will be requested and loaded again")
 window.onload = function () {
   getData(myIngredient, diet, cuisine);
   createEvents();
@@ -168,7 +168,7 @@ function createEvents() {
     // };
   }
 
-  // select the checked check-Boxes
+  // select the checked check-Boxes-cuisine types
   let checkbox = document.querySelectorAll("input[type='checkbox']");
 
   let checkedValues = [];
@@ -177,14 +177,14 @@ function createEvents() {
       if (checkbox[c].checked == true) {
         checkedValues.push(checkbox[c].value);
       } else {
-        // SPLICE METHOD AFTER FINDING OUT THE INDEX WITH INDEXOF METHOD
+        // either: SPLICE METHOD AFTER FINDING OUT THE INDEX WITH INDEXOF METHOD
         // console.log("checkbox[c].value", checkbox[c].value);
         // console.log("checkedValues", checkedValues);
         // const cuisineToRemoveIndex = checkedValues.indexOf(checkbox[c].value);
         // console.log("cuisineToRemoveIndex", cuisineToRemoveIndex);
         // checkedValues.splice(cuisineToRemoveIndex, 1);
 
-        // FILTER METHOD
+        // or better: FILTER METHOD
         // const filteredCuisine = checkedValues.filter(function (myValue) {
 
         // })
@@ -197,8 +197,11 @@ function createEvents() {
 
       // getData(myIngredient, diet, cuisine);
       cuisine = checkedValues.toString();
+      console.log("checkedValues", checkedValues);
       getData(myIngredient, diet, checkedValues.toString());
     });
+
+    // console.log("checkedValues", checkedValues);
   }
 }
 
