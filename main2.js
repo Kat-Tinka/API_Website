@@ -1,15 +1,15 @@
 //function of "Hide & Show Button" for more and less Broccoli-Infos
-function showHide(event) {
+function showHide() {
   let mySecondaryText = document.getElementById("secondary-text");
   let isHidden = Array.from(mySecondaryText.classList).includes("hide");
   if (isHidden === true) {
     mySecondaryText.classList.remove("hide");
     mySecondaryText.classList.add("show");
-    event.target.innerHTML = "Read Less";
+    event1.target.innerHTML = "Read Less";
   } else {
     mySecondaryText.classList.remove("show");
     mySecondaryText.classList.add("hide");
-    event.target.innerText = "Read More";
+    event1.target.innerText = "Read More";
   }
 }
 
@@ -22,7 +22,7 @@ function getData(myIngredient, diet, cuisine) {
   console.log("diet", diet);
   console.log("cuisine", cuisine);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=3051f5e3ddb849588d48b1ecd14676f9&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url);
   fetch(url)
     .then(function (response) {
@@ -55,6 +55,7 @@ function getData(myIngredient, diet, cuisine) {
 window.onload = function () {
   getData(myIngredient, diet, cuisine);
   createEvents();
+  checkAllOrUncheckAll();
 };
 
 //past task to get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
@@ -69,7 +70,7 @@ function createCards(data) {
     divCard.classList.add("card");
     divCard.setAttribute("class", "card");
     recipiesContainer.appendChild(divCard);
-
+    // TODO add id attribute to divCard that corresponds to the recipes id
     // add titles to the cards
     let title = document.createElement("h5");
     title.setAttribute("class", "card-title");
@@ -85,6 +86,8 @@ function createCards(data) {
     img.style.width = "18rem";
 
     divCard.appendChild(img);
+
+    // TODO add a click event to each card and read the id of the card
   }
 }
 
@@ -191,6 +194,7 @@ function createEvents() {
         const filteredCuisine = checkedValues.filter((myValue) => {
           return myValue !== checkbox[c].value;
         });
+
         console.log("filteredCuisine", filteredCuisine);
         checkedValues = filteredCuisine;
       }
@@ -206,26 +210,77 @@ function createEvents() {
 }
 
 // TODO put this block of code (see:let isAllChecked = false;(...)) into a function
-// event for all checked checkButtons (at the beginning no btn is checked =>let isAllChecked = false; )
+// * event for all checked checkButtons (at the beginning no btn is checked =>let isAllChecked = false; )
 
-let isAllChecked = false;
-document.getElementById("btnCheckAll").onclick = function (e) {
-  let checkBoxes = document.getElementsByName("cuisine");
-  if (isAllChecked) {
-    for (let c = 0; c < checkBoxes.length; c++) {
-      checkBoxes[c].checked = false;
+// let isAllChecked = false;
+// document.getElementById("btnCheckAll").onclick = function (e) {
+//   let checkBoxes = document.getElementsByName("cuisine");
+//   if (isAllChecked) {
+//     for (let c = 0; c < checkBoxes.length; c++) {
+//       checkBoxes[c].checked = false;
+//     }
+//   } else {
+//     for (let c = 0; c < checkBoxes.length; c++) {
+//       checkBoxes[c].checked = true;
+//     }
+//   }
+//   isAllChecked = !isAllChecked;
+//   console.log("isAllChecked", isAllChecked);
+//   document.querySelectorAll('input[type="checkbox"]:checked');
+//   cuisine = isAllChecked.toString();
+//   getData(myIngredient, diet, isAllChecked.toString());
+// };
+
+function checkAllOrUncheckAll() {
+  let isAllChecked = false;
+  document.getElementById("btnCheckAll").onclick = function (e) {
+    let checkBoxes = document.getElementsByName("cuisine");
+    if (isAllChecked) {
+      for (let c = 0; c < checkBoxes.length; c++) {
+        checkBoxes[c].checked = false;
+      }
+    } else {
+      for (let c = 0; c < checkBoxes.length; c++) {
+        checkBoxes[c].checked = true;
+      }
     }
-  } else {
-    for (let c = 0; c < checkBoxes.length; c++) {
-      checkBoxes[c].checked = true;
+    isAllChecked = !isAllChecked;
+
+    console.log("isAllChecked", isAllChecked);
+    document.querySelectorAll('input[type="checkbox"]:checked');
+    //   cuisine = isAllChecked.toString();
+    //   getData(myIngredient, diet, isAllChecked.toString());
+    // };
+    let allOrNoneChecked = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    console.log("allOrNoneChecked", allOrNoneChecked);
+
+    let allCuisine = [];
+    if (allOrNoneChecked.length === 0) {
+      getData(myIngredient, diet, "");
+      cuisine = "";
+      //TODO DONE:loop over allOrNoneChecked to extract the value of my checkboxes
+    } else {
+      console.log("I am in the else of isallchecked function");
+      for (let i = 0; i < allOrNoneChecked.length; i++) {
+        //TODO DONE:push it into an array allCuisine
+        allCuisine.push(allOrNoneChecked[i].value);
+      }
+      cuisine = allCuisine.toString();
+      console.log("allCuisine", allCuisine);
+      getData(myIngredient, diet, allCuisine.toString());
     }
-  }
-  isAllChecked = !isAllChecked;
-  console.log("isAllChecked", isAllChecked);
-  document.querySelectorAll('input[type="checkbox"]:checked');
-  cuisine = isAllChecked.toString();
-  getData(myIngredient, diet, isAllChecked.toString());
-};
+    // or: else (allOrNoneChecked.length === !0) {
+    //   getData(myIngredient, diet, cuisine);
+
+    //getData(myIngredient, diet, cuisine); or : getData(myIngredient, diet, cuisine);
+
+    //TODO outside the loop but inside the else we call getData with stringified allCuisine and change the values ofcuisine
+  };
+}
+
+//! Why does "Show More /less btn not function?=>showHide is not defined at HTMLButtonElement.onclick (index.html:276:40) onclick @ index.html:276
 
 // // get the values of one or more checked checkBoxes "Cuisine"
 // let buttonSubmit = document.getElementById("btnSubmit");
@@ -253,7 +308,7 @@ document.getElementById("btnCheckAll").onclick = function (e) {
 // TODO get recipes with all cusines / default value without cusine
 // TODO delete submit (checkbox)button - it has no function anymore
 // TODO maybe write a function, which allows to put more than one ingredient into the search input(?)
-
+//
 // event for all checked checkButtons
 // document.getElementById("btnCheckAll").onclick = function (e) {
 //   e.preventDefault();
