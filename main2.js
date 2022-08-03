@@ -1,4 +1,4 @@
-//function of "Hide & Show Button" for more and less Broccoli-Infos
+//*function of "Hide & Show Button" for more and less Broccoli-Infos===========================================================================================
 function showHide() {
   let mySecondaryText = document.getElementById("secondary-text");
   let isHidden = Array.from(mySecondaryText.classList).includes("hide");
@@ -13,7 +13,7 @@ function showHide() {
   }
 }
 
-//try to fetch the data from the API with chosen parameters ->like (my)ingredient, diet, cuisine,
+//*fetch the data from the API with chosen parameters ->like (my)ingredient, diet, cuisine,etc. ======================================================================
 let myIngredient = "broccoli";
 let diet = "";
 let cuisine = "";
@@ -21,17 +21,17 @@ function getData(myIngredient, diet, cuisine) {
   console.log("myIngredient", myIngredient);
   console.log("diet", diet);
   console.log("cuisine", cuisine);
-  //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=3051f5e3ddb849588d48b1ecd14676f9&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-process of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block (not outside!)
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url);
   fetch(url)
     .then(function (response) {
-      //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must
+      //console.log("response", response); => with console.log, you can check if the response was fine,not a must
 
-      // return response.json is a promise ( which transforms the resonse into a readable json file)
+      // return response.json() is a promise ( which transforms the response into a readable json file)
       return response.json();
     })
-    // which also creates a second promise, so we need another .then-function with a anonymous() callback, where we can receive the data ( all the broccoli data):
+    //...which also creates a second promise, so we need another .then-function with a anonymous() callback, where we can receive the data ( all the "broccoli"-data):
     .then(function (data) {
       console.log("data", data);
       // in order to get and show the LIVE DATA , I need to call this function "createCards()" from the.then-Block and send "data" as parameter over function:
@@ -43,43 +43,43 @@ function getData(myIngredient, diet, cuisine) {
         createCards(data.results);
       }
     })
-    // because the .then-block can't show errors , we also need a .catch(function (error) ..:
+    // because the .then-block can't show errors , we also need a .catch(function (error), to make errors visible:
     .catch(function (error) {
       console.log("error", error);
     });
 }
 
-// the uncommented command "getData();" ( see below) in main2.js together with the also uncommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests of 150! For practice purposes , you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes).
+// the "outcommented" command "getData();" ( see below) in main2.js together with the also outcommented line "<script src="main2.js"></script> from "index.html:" gives you LIVE REQUEST DATA! So be carefull with the allowed requests (spoonacular) of 150 requests! For practice purposes, you can better use (in index.html:) <script src="findByIngredientsData.js"></script> together with <script src="main2.js"></script> or with <script src="main.js"></script> (here are the Show More Buttons and Checkboxes).
 
-// The window onload function is not a must, but it bundles the get Data(myIngredient, diet, cuisine when loading the page -but this means also, that if you change omly one parameter , all of the "getData() will be requested and loaded again")
+//* The window onload function is not a must, but it bundles the get Data(myIngredient, diet, cuisine when loading the page (-but this means also, that if you change only one parameter, all of the "getData() will be requested and loaded again" and not only the chnaged)=========================================================================================================================================================================
 window.onload = function () {
   getData(myIngredient, diet, cuisine);
   createEvents();
   checkAllOrUncheckAll();
 };
 
-//past task to get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before a Function, to display it ( with a loop)-> But"findByIngredientsData" is no live data. This is data from file!
+//old task was to get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before that a function, to display it ( with a loop)-> But"findByIngredientsData" is no live data.
 
-//In order to get the the live data from the .then-block, I need to call the function below ( function create Cards () from  the .then-Block!)
+//*In order to get the the live data from the .then-block, I need to call the function below ( function create Cards () from  the .then-Block!)==========================
 function createCards(data) {
   const recipiesContainer = document.getElementById("container");
   recipiesContainer.innerHTML = "";
-  // create a loop, and for each element of array create a card
+  // *create a loop, and for each element of array create a card:=======================================================================================================
   for (let i = 0; i < data.length; i++) {
     let divCard = document.createElement("div");
     divCard.classList.add("card");
     divCard.setAttribute("class", "card");
     recipiesContainer.appendChild(divCard);
-    // TODO add id attribute to divCard that corresponds to the recipes id
-    // add titles to the cards
+    // TODO 02.08.22: add id attribute to divCard that corresponds to the recipes id
+    //* add titles to the cards:========================================================================================================================================
     let title = document.createElement("h5");
     title.setAttribute("class", "card-title");
     title.setAttribute("style", "color:#198754");
-    // title.style.width = "18rem";
     title.innerHTML = data[i].title;
 
     divCard.appendChild(title);
 
+    //* show images of the recipes:=====================================================================================================================================
     let img = document.createElement("img");
     img.setAttribute("src", data[i].image);
     img.setAttribute("class", "card-img-top");
@@ -87,13 +87,12 @@ function createCards(data) {
 
     divCard.appendChild(img);
 
-    // TODO add a click event to each card and read the id of the card
+    // TODO  02.08.22: add a click event to each card and read the id of the card
   }
 }
 
-// onchange Event using: In JavaScript, using the addEventListener() method:??
-
-// Using JavaScript change event for radio buttons
+//! -> check the code below, if it's correct->----------------------------------------------------------------------------------------------------------------------
+// *Using JavaScript change event for radio button->====================================================================================================================
 // let result = document.querySelector('#result');
 // document.body.addEventListener('change', function (e) {
 //     let target = e.target;
@@ -112,9 +111,7 @@ function createCards(data) {
 //     result.textContent = message;
 // });
 
-// doesn't work-why?:var selected = document.querySelector('input[value="vegetarian"]:checked').id;
-
-// filtered by radio Buttons-checked
+// *filtered by radio Buttons-checked===========================================================================================================================
 // function filterByDiet() {
 //   let CheckedRadio = Array.from(
 //     document.querySelectorAll("input[type='radio']:checked")
@@ -135,7 +132,6 @@ function createCards(data) {
 
 // let title = document.createElement("h5");
 //     title.setAttribute("class", "card-title");
-//     // title.style.width = "18rem";
 //     title.setAttribute("style","color:black")
 //     title.innerHTML = data[i].title;d
 
@@ -148,30 +144,27 @@ function createCards(data) {
 
 //     divCard.appendChild(img);
 //   }
+//! <---check the code above, if it's correct <---------------------------------------------------------------------------------------------------------------------
 
+//* create events for the search-button============================================================================================================================================
 function createEvents() {
   let mySearchButton = document.getElementById("search-button");
-  mySearchButton.addEventListener("click", function (event) {
+  mySearchButton.addEventListener("click", function (_event) {
     let myInput = document.getElementById("search-input");
     myIngredient = myInput.value;
     getData(myInput.value, diet, cuisine);
   });
 
-  // to select the radio buttons with querySelectorAll-this works:
+  //* select the radio buttons with querySelectorAll: =========================================================================================================================
   let radios = document.querySelectorAll("input[type='radio']");
-  // for (const radio of radios) {
   for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function (event) {
       diet = event.target.value;
       getData(myIngredient, diet, cuisine);
     });
-    // radio.onchange = (e) => {
-    //   diet = e.target.value;
-    //   getData(myIngredient, e.target.value);
-    // };
   }
 
-  // select the checked check-Boxes-cuisine types
+  //*select the checked checkboxes-cuisine types ===========================================================================================================================
   let checkbox = document.querySelectorAll("input[type='checkbox']");
 
   let checkedValues = [];
@@ -180,16 +173,16 @@ function createEvents() {
       if (checkbox[c].checked == true) {
         checkedValues.push(checkbox[c].value);
       } else {
-        // either: SPLICE METHOD AFTER FINDING OUT THE INDEX WITH INDEXOF METHOD
+        // --> either: SPLICE METHOD AFTER FINDING OUT THE INDEX WITH INDEXOF METHOD:
         // console.log("checkbox[c].value", checkbox[c].value);
         // console.log("checkedValues", checkedValues);
         // const cuisineToRemoveIndex = checkedValues.indexOf(checkbox[c].value);
         // console.log("cuisineToRemoveIndex", cuisineToRemoveIndex);
         // checkedValues.splice(cuisineToRemoveIndex, 1);
 
-        // or better: FILTER METHOD
+        // --> or better (what I use below): FILTER METHOD:
         // const filteredCuisine = checkedValues.filter(function (myValue) {
-
+        //
         // })
         const filteredCuisine = checkedValues.filter((myValue) => {
           return myValue !== checkbox[c].value;
@@ -199,18 +192,15 @@ function createEvents() {
         checkedValues = filteredCuisine;
       }
 
-      // getData(myIngredient, diet, cuisine);
+      //* getData(myIngredient, diet, cuisine); ====================================================================================================================================
       cuisine = checkedValues.toString();
       console.log("checkedValues", checkedValues);
       getData(myIngredient, diet, checkedValues.toString());
     });
-
-    // console.log("checkedValues", checkedValues);
   }
 }
 
-// TODO put this block of code (see:let isAllChecked = false;(...)) into a function
-// * event for all checked checkButtons (at the beginning no btn is checked =>let isAllChecked = false; )
+// * event for all checked checkButtons (at the beginning no btn is checked =>let isAllChecked = false; ) ======> the mentioned code of block before putting it into the "function checkAllOrUncheckAll()":
 
 // let isAllChecked = false;
 // document.getElementById("btnCheckAll").onclick = function (e) {
@@ -230,7 +220,9 @@ function createEvents() {
 //   cuisine = isAllChecked.toString();
 //   getData(myIngredient, diet, isAllChecked.toString());
 // };
+//* <=======================================================================================================
 
+//* the "function checkAllOrUncheckAll()" checkes if all (or none) of the checkboxes are checked and if so it gives also the cuisine-data back ========================================================================
 function checkAllOrUncheckAll() {
   let isAllChecked = false;
   document.getElementById("btnCheckAll").onclick = function (e) {
@@ -260,11 +252,10 @@ function checkAllOrUncheckAll() {
     if (allOrNoneChecked.length === 0) {
       getData(myIngredient, diet, "");
       cuisine = "";
-      //TODO DONE:loop over allOrNoneChecked to extract the value of my checkboxes
+      //loop over allOrNoneChecked to extract the value of the checkboxes:
     } else {
-      console.log("I am in the else of isallchecked function");
       for (let i = 0; i < allOrNoneChecked.length; i++) {
-        //TODO DONE:push it into an array allCuisine
+        //push it into an array allCuisine:
         allCuisine.push(allOrNoneChecked[i].value);
       }
       cuisine = allCuisine.toString();
@@ -274,21 +265,17 @@ function checkAllOrUncheckAll() {
     // or: else (allOrNoneChecked.length === !0) {
     //   getData(myIngredient, diet, cuisine);
 
-    //getData(myIngredient, diet, cuisine); or : getData(myIngredient, diet, cuisine);
-
-    //TODO outside the loop but inside the else we call getData with stringified allCuisine and change the values ofcuisine
+    //info:outside the loop but inside the else we call getData with stringified allCuisine and change the values ofcuisine
   };
 }
 
-//! Why does "Show More /less btn not function?=>showHide is not defined at HTMLButtonElement.onclick (index.html:276:40) onclick @ index.html:276
-
-// // get the values of one or more checked checkBoxes "Cuisine"
+//*get the values of one or more checked checkBoxes "Cuisine"
 // let buttonSubmit = document.getElementById("btnSubmit");
 // let values = [];
 // buttonSubmit.addEventListener("click", function (e) {
 //   e.preventDefault();
 //   let checkBoxes = document.getElementsByName("cuisine");
-//   // console.log("checkBoxes:", checkBoxes);
+//*console.log("checkBoxes:", checkBoxes);
 //   for (let c = 0; c < checkBoxes.length; c++) {
 //     if (checkBoxes[c].checked == true) {
 //       console.log("chosen cuisine(s)", checkBoxes[c].value);
@@ -297,17 +284,14 @@ function checkAllOrUncheckAll() {
 //       if (checkBoxes[c].checked == !true) {
 //       }
 //     }
-//     // const element = array[c];
+//*const element = array[c];
 //   }
 //   console.log("The value(s): " + values.toString());
 //   getData(myIngredient, diet, values.toString());
-//   // alert("The value(s): " + values.toString());
+//*alert("The value(s): " + values.toString());
 // });
 
-// TODO call the function
-// TODO get recipes with all cusines / default value without cusine
-// TODO delete submit (checkbox)button - it has no function anymore
-// TODO maybe write a function, which allows to put more than one ingredient into the search input(?)
+// TODO either write a function, which allows to put more than one ingredient into the search input(see endpoint parameter:"includeIngredients") or (maybe more interesting): "excludeIngredients"
 //
 // event for all checked checkButtons
 // document.getElementById("btnCheckAll").onclick = function (e) {
@@ -327,9 +311,3 @@ function checkAllOrUncheckAll() {
 //       document.body.append(checkbox.value + " ");
 //     }
 //   });
-
-// add event to all radio buttons
-// when one of them is changed you retrieve the value of the radio button & you call getData with that value
-
-// diet = "vegetarian"
-// getData(myIngredient, "vegetarian")

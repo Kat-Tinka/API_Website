@@ -1,4 +1,4 @@
-//Get the data out of the API/ endpoint
+//*Get the data out of the API/ endpoint====================================================================================================================
 function getData() {
   console.log(1);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
@@ -6,19 +6,18 @@ function getData() {
     "https://api.spoonacular.com/recipes/findByIngredients?ingredients=broccoli&apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7"
   )
     .then(function (response) {
-      //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must
+      // console.log("response", response); -> with console.log, you can check if the response was fine,not a must
       console.log(2);
       // return response.json is a promise ( which transforms the response into a readable json file)
       return response.json();
     })
-    // which also creates a second promise, so we need another .then-function withh a anonymous() callback, where we can receive the data ( all the broccoli data):
-    .then(function(data) => {
-      //   console.log("data", data);
-      // in order to get and show the LIVE DATA , I need to call this function "createCards()" from the.then-Block and send "data" as parameter over function( instead of createCards(data); we call it displayData sending the data)
+    // ...which also creates a second promise, so we need another .then-function with a anonymous() callback, where we can receive the data ( all the broccoli data):
+    .then(function (data) {
+      // in order to get and show the LIVE DATA , I need to call this function "createCards()" from the .then-Block and send "data" as parameter over function( instead of createCards(data); we call it displayData sending the data)
       createCards(data);
       displayCards(data);
     })
-    // because the .then-block can't show errors , we also need a .catch(function (error) ..:
+    // because the .then-block can't show errors, we also need a .catch(function (error) ..:
     .catch(function (error) {
       console.log("error", error);
     });
@@ -30,37 +29,12 @@ function getData() {
 // general container called myContainer
 const myContainer = document.getElementById("container");
 
-//Create Checkboxes (Vegetarian, vegan, carnovore, pescetarian)
-
-//  Create Checkboxes (Vegetarian, vegan, carnovore, pescetarian)
-
-//     <div>
-//       <input type="checkbox" id="vegan" name="">
-//       <label for ="">Vegan</label>
-//     </div>
-
-//     <div>
-//       <input type="checkbox" id="vegetarian" name="">
-//       <label for="">Vegetarian</label>
-//     </div>
-// <div>
-//       <input type="checkbox" id="pescetarian" name="">
-//       <label for
-//             ="">Pescetarian</label>
-//     </div>
-
-//     <div>
-//       <input type="checkbox" id="carnivore" name="">
-//       <label for="">Carnivore</label>
-//     </div>
-
-// let myContainer = document.createElement("div");
-
-// nachdem ich ein for-Schleife und alles zum Thema CheckBoxes erstellt habe, erstelle ich 2 Funktionen: 1.) "function createCheckboxes() {}" und füge alles zu CheckBoxes hier ein// danach eine 2. Funktion, um die CheckBoxes zu zeigen(2. "function displayData()")
+// nachdem ich eine for-Schleife und alles zum Thema CheckBoxes erstellt habe, erstelle ich 2 Funktionen: 1.) "function createCheckboxes() {}" und füge alles zu CheckBoxes hier ein// danach eine 2. Funktion, um die CheckBoxes zu zeigen(2. "function displayData()")
+//* Erstelle function createCheckboxes()====================================================================================================================
 function createCheckboxes() {
-  /* Create Checkboxes:  */
+  //* Create Checkboxes:  */
   let checkBoxContainer = document.createElement("div");
-  // erstelle eine liste mit strings (mit Indexpositionen 0,1,2)_Unterschied Index= fängt bei 0 an  und .length fängt bei 1 an)=> thats for the filter part:
+  // erstelle eine liste mit strings (mit Indexpositionen 0,1,2)_Unterschied Index= fängt bei 0 an  und .length fängt bei 1 an)=> that's for the filter part:
   const checkboxArray = ["vegetarian", "vegan", "pescetarian", "carnivore"];
   console.log("checkboxArray.length :>> ", checkboxArray.length);
 
