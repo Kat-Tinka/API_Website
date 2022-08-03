@@ -37,3 +37,7 @@ div.radioButtons {
 /* element.card-title.h5 {
   color: #198754;
 } */
+
+.pointer-cursor {
+  cursor: pointer;
+}

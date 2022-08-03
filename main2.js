@@ -22,14 +22,17 @@ function getData(myIngredient, diet, cuisine) {
   console.log("diet", diet);
   console.log("cuisine", cuisine);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-process of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block (not outside!)
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
-  console.log(url);
-  fetch(url)
+  //* Fetch 1: myIngredient, diet, cuisine ======================================================
+  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  console.log(url1);
+  fetch(url1)
     .then(function (response) {
       //console.log("response", response); => with console.log, you can check if the response was fine,not a must
 
       // return response.json() is a promise ( which transforms the response into a readable json file)
       return response.json();
+
+      const url2 = "";
     })
     //...which also creates a second promise, so we need another .then-function with a anonymous() callback, where we can receive the data ( all the "broccoli"-data):
     .then(function (data) {
@@ -69,8 +72,9 @@ function createCards(data) {
     let divCard = document.createElement("div");
     divCard.classList.add("card");
     divCard.setAttribute("class", "card");
+
     recipiesContainer.appendChild(divCard);
-    // TODO 02.08.22: add id attribute to divCard that corresponds to the recipes id
+
     //* add titles to the cards:========================================================================================================================================
     let title = document.createElement("h5");
     title.setAttribute("class", "card-title");
@@ -82,13 +86,33 @@ function createCards(data) {
     //* show images of the recipes:=====================================================================================================================================
     let img = document.createElement("img");
     img.setAttribute("src", data[i].image);
-    img.setAttribute("class", "card-img-top");
+    img.setAttribute("class", "card-img-top pointer-cursor");
     img.style.width = "18rem";
-
+    // TODO 02.08.22: add id attribute to divCard that corresponds to the recipes id:
+    img.setAttribute("id", data[i].id);
     divCard.appendChild(img);
 
     // TODO  02.08.22: add a click event to each card and read the id of the card
+
+    // function createEvents() {
+    //   let mySearchButton = document.getElementById("search-button");
+    //   mySearchButton.addEventListener("click", function (_event) {
+    //     let myInput = document.getElementById("search-input");
+    //     myIngredient = myInput.value;
+    //     getData(myInput.value, diet, cuisine);
+    //   });
+
+    img.addEventListener("click", function (event) {
+      console.log("event", event);
+      console.log("event.target.id", event.target.id);
+      getInstructions(event.target.id);
+    });
   }
+}
+
+function getInstructions(recipesId) {
+  // TODO  fetch the recipes steps (use the url from postman)
+  const url = `https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7`;
 }
 
 //! -> check the code below, if it's correct->----------------------------------------------------------------------------------------------------------------------
