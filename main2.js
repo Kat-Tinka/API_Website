@@ -17,13 +17,16 @@ function showHide() {
 let myIngredient = "broccoli";
 let diet = "";
 let cuisine = "";
-function getData(myIngredient, diet, cuisine) {
+let recipesId = "";
+function getData(myIngredient, diet, cuisine, recipesId) {
   console.log("myIngredient", myIngredient);
   console.log("diet", diet);
   console.log("cuisine", cuisine);
+  console.log("recipesId", recipesId);
+  // console.log("getInstructions", getInstructions);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-process of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block (not outside!)
   //* Fetch 1: myIngredient, diet, cuisine ======================================================
-  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=3051f5e3ddb849588d48b1ecd14676f9&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url1);
   fetch(url1)
     .then(function (response) {
@@ -32,7 +35,7 @@ function getData(myIngredient, diet, cuisine) {
       // return response.json() is a promise ( which transforms the response into a readable json file)
       return response.json();
 
-      const url2 = "";
+      // const url2 = "";
     })
     //...which also creates a second promise, so we need another .then-function with a anonymous() callback, where we can receive the data ( all the "broccoli"-data):
     .then(function (data) {
@@ -56,9 +59,10 @@ function getData(myIngredient, diet, cuisine) {
 
 //* The window onload function is not a must, but it bundles the get Data(myIngredient, diet, cuisine when loading the page (-but this means also, that if you change only one parameter, all of the "getData() will be requested and loaded again" and not only the chnaged)=========================================================================================================================================================================
 window.onload = function () {
-  getData(myIngredient, diet, cuisine);
+  getData(myIngredient, diet, cuisine, recipesId);
   createEvents();
   checkAllOrUncheckAll();
+  getInstructions();
 };
 
 //old task was to get the data from a file: createCards(findByIngredientsData);to make the data visible I created also before that a function, to display it ( with a loop)-> But"findByIngredientsData" is no live data.
@@ -93,15 +97,6 @@ function createCards(data) {
     divCard.appendChild(img);
 
     // TODO  02.08.22: add a click event to each card and read the id of the card
-
-    // function createEvents() {
-    //   let mySearchButton = document.getElementById("search-button");
-    //   mySearchButton.addEventListener("click", function (_event) {
-    //     let myInput = document.getElementById("search-input");
-    //     myIngredient = myInput.value;
-    //     getData(myInput.value, diet, cuisine);
-    //   });
-
     img.addEventListener("click", function (event) {
       console.log("event", event);
       console.log("event.target.id", event.target.id);
@@ -111,8 +106,30 @@ function createCards(data) {
 }
 
 function getInstructions(recipesId) {
-  // TODO  fetch the recipes steps (use the url from postman)
-  const url = `https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7`;
+  // TODO  fetch the recipes steps (use the url from postman withexampel-id:324694)
+  const url2 = `https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=3051f5e3ddb849588d48b1ecd14676f9&`;
+  // const url2 = `https://api.spoonacular.com/recipes/?id=${recipesId}/analyzedInstructions?apiKey=3051f5e3ddb849588d48b1ecd14676f9&`;
+  console.log(url2);
+  fetch(url2)
+    .then(function (response2) {
+      console.log("response2", response2);
+      return response2.json();
+
+      // const url2 = "";
+    })
+    .then(function (data) {
+      console.log("data", data);
+
+      if (data.results.length === 0) {
+        createCards("");
+        alert("No recipes found");
+      } else {
+        createCards(data.results);
+      }
+    })
+    .catch(function (error) {
+      console.log("error", error);
+    });
 }
 
 //! -> check the code below, if it's correct->----------------------------------------------------------------------------------------------------------------------
@@ -176,7 +193,7 @@ function createEvents() {
   mySearchButton.addEventListener("click", function (_event) {
     let myInput = document.getElementById("search-input");
     myIngredient = myInput.value;
-    getData(myInput.value, diet, cuisine);
+    getData(myInput.value, diet, cuisine, recipesId);
   });
 
   //* select the radio buttons with querySelectorAll: =========================================================================================================================
@@ -220,6 +237,7 @@ function createEvents() {
       cuisine = checkedValues.toString();
       console.log("checkedValues", checkedValues);
       getData(myIngredient, diet, checkedValues.toString());
+      getInstructions(recipesId);
     });
   }
 }

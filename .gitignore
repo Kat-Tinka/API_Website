@@ -8,3 +8,6 @@ main2WithoutComments.js
 
 # "config.js" is the file, which we want to hide from gitHub, but because I already pushed the project on GitHub (with this empty file ), the file will stay visible.
 config.js
+
+# CodingProblems
+CodingProblems.md
