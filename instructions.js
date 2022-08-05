@@ -14,6 +14,7 @@ function getInstructions(recipesId) {
     })
     .then(function (data) {
       displayRecipesInstructions(data);
+      console.log(data);
     })
     .catch(function (error) {
       console.log("error", error);
