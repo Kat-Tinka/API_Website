@@ -17,18 +17,14 @@ window.onload = function () {
   console.log("urlParams", urlParams);
   console.log("title", title);
 
-  // const img = urlParams.get("img");
-  // const image = document.querySelector("image");
-  // image.
   const recipeId = urlParams.get("id");
-  // if I use "myParam" -> I get also the same ID liek with "recipeId":
-  // console.log("myParam", recipeId);
+  // if I use "myParam" -> I get also the same ID like with "recipeId":console.log("myParam", recipeId);
   console.log("recipeId", recipeId);
   getInstructions(recipeId);
 };
 
 function getInstructions(recipesId) {
-  // TODO  fetch the recipes steps (use the url from postman withexampel-id:324694-> this works)-> now check live data:
+  // TODO  fetch the recipes steps (first use the url from postman with saved exampel-id:324694-> this works)-> now check live data:
   const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&stepBreakdown=true`;
   fetch(url2)
     .then(function (response2) {
@@ -39,7 +35,6 @@ function getInstructions(recipesId) {
       const instructionSteps = data[0].steps;
 
       // sending cleaned data ---> instructionSteps
-
       allIngredients(instructionSteps);
       displayRecipesInstructions(instructionSteps);
       console.log("fetched instructions>>>", data);
@@ -64,10 +59,10 @@ function getInstructions(recipesId) {
 //   divContainer.innerHTML = "";
 // }
 
-function createCards(_instructionContainer) {
-  const container = document.getElementById("instructionContainer");
-  container.innerHTML = "";
-}
+// function createCards(_instructionContainer) {
+//   const container = document.getElementById("instructionContainer");
+//   container.innerHTML = "";
+// }
 
 function allIngredients(instructionSteps) {
   console.log("instructionSteps", instructionSteps);
@@ -91,12 +86,75 @@ function allIngredients(instructionSteps) {
 
   dispayListOfIngredients(allIngredientsForRecipes);
 }
-
+//*========================================================================================================
+const ingredientsContainer = document.getElementById("ingredientsContainer");
+console.log("ingredientsContainer", ingredientsContainer);
 function dispayListOfIngredients(allIngredientsForRecipes) {
   // display the list of ingredients (loop)
-  // 1. create in HTML a ul for ingredientsContainer
-  // 2. fill with li for every ingredient
+  let ingredients = document.createElement("ul");
+
+  allIngredientsForRecipes.forEach((allIngredientsforRecipe) => {
+    let ingredient = document.createElement("li");
+    ingredient.innerHTML = allIngredientsforRecipe;
+    ingredients.appendChild(ingredient);
+
+    // 1. create in HTML a ul for ingredientsContainer
+    // 2. fill with li for every ingredient
+  });
+  console.log("ingredient", ingredients);
+  ingredientsContainer.appendChild(ingredients);
 }
+
+// let ingredientsData = allIngredientsForRecipe;
+// let list = document.getElementById("myList");
+// ingredientsData.forEach((_item) =>) {
+//   let li = document.cretaeElement("li");
+//   li.innerText = item;
+//   list.appendChild(li);
+// }
+
+// const allIngredientsForRecipe = getInstructions.length.number;
+// console.log("allIngredientsForRecipe2", allIngredientsForRecipe);
+
+//*  =================================================================================================================
+//*OR:
+// < !--copy from < instructions class="js" > function dispayListOfIngredients(allIngredientsForRecipes) {
+//   // display the list of ingredients (loop)
+//   for (let l = 0; l < allIngredientsForRecipes.length; l++) {
+//     const allIngredientsForRecipesArray = allIngredientsForRecipes[l];
+//     console.log(allIngredientsForRecipesArray);
+//     if (
+// !allIngredientsForRecipesArray.includes(allIngredientsForRecipes[l].name)
+//     ) {
+//       allIngredientsForRecipesArray.push(dispayListOfIngredients[l].name);
+//     }
+//   }
+//   // 1. create in HTML a ul for ingredientsContainer
+//   // 2. fill with li for every ingredient
+// }
+// console.log(allIngredientsForRecipesArray);
+
+// function displayRecipesInstructions(instructionSteps) {
+//   // console.log("instructionSteps", instructionSteps);
+
+//   //for loop , loop instructionsSteps.length. r´try with forEach
+//   instructionSteps.forEach((instructionStep) => {
+//     /*     console.log("instructionStep", instructionStep);
+//      */
+//     let ingredients = document.createElement("p");
+//     ingredients.innerHTML = instructionStep.number + ":" + instructionStep.step;
+
+//     instructionContainer.appendChild(ingredients);
+
+//     if (instructionStep.length) {
+//       //create a new text with the length
+
+//       const cookingLength = instructionStep.length.number;
+//       const cookingUnit = instructionStep.length.unit;
+
+//       console.log("cookingLength", cookingLength);
+//       console.log("cookingUnit", cookingUnit);
+//     }</instructions> -->
 
 function displayRecipesInstructions(instructionSteps) {
   // console.log("instructionSteps", instructionSteps);
