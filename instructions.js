@@ -1,9 +1,9 @@
 // let title = "";
 // console.log(title);
-let equipment = "";
+/* let equipment = "";
 let recipeInstructions = "";
 let ingredients = "";
-let steps = "";
+let steps = ""; */
 
 // after creating the HTML-file "recipeinstructions.html"-> next steps: "instructions.js" , where I write a onload-function with my search Paremeters ( I need the recipe ID and the instructions) and make my request using the ...
 //*... FETCH API: ======================================================================
@@ -13,6 +13,7 @@ window.onload = function () {
   const title = urlParams.get("name");
   const h6 = document.querySelector("h6");
   h6.innerHTML += " " + title;
+
   console.log("urlParams", urlParams);
   console.log("title", title);
 
@@ -34,7 +35,13 @@ function getInstructions(recipesId) {
       return response2.json();
     })
     .then(function (data) {
-      displayRecipesInstructions(data);
+      // cleaning the data from what we dont need
+      const instructionSteps = data[0].steps;
+
+      // sending cleaned data ---> instructionSteps
+
+      allIngredients(instructionSteps);
+      displayRecipesInstructions(instructionSteps);
       console.log("fetched instructions>>>", data);
     })
     .catch(function (error) {
@@ -62,26 +69,65 @@ function createCards(_instructionContainer) {
   container.innerHTML = "";
 }
 
-function displayRecipesInstructions(data) {
-  const instructionSteps = data[0].steps;
+function allIngredients(instructionSteps) {
+  console.log("instructionSteps", instructionSteps);
+  const allIngredientsForRecipes = [];
+  for (let i = 0; i < instructionSteps.length; i++) {
+    /* console.log(
+      "instructionSteps[i].ingredients",
+      instructionSteps[i].ingredients
+    ); */
+    const ingredientsArray = instructionSteps[i].ingredients;
+    for (let g = 0; g < ingredientsArray.length; g++) {
+      console.log("ingredientsArray[g]", ingredientsArray[g]);
+      console.log("ingredientsArray[g].name", ingredientsArray[g].name);
+      // if allIngredientsForRecipes does not include the current ingredient name, push it
+      if (!allIngredientsForRecipes.includes(ingredientsArray[g].name)) {
+        allIngredientsForRecipes.push(ingredientsArray[g].name);
+      }
+    }
+  }
+  console.log("allIngredientsForRecipes", allIngredientsForRecipes);
+
+  dispayListOfIngredients(allIngredientsForRecipes);
+}
+
+function dispayListOfIngredients(allIngredientsForRecipes) {
+  // display the list of ingredients (loop)
+  // 1. create in HTML a ul for ingredientsContainer
+  // 2. fill with li for every ingredient
+}
+
+function displayRecipesInstructions(instructionSteps) {
   // console.log("instructionSteps", instructionSteps);
 
   //for loop , loop instructionsSteps.length. r´try with forEach
   instructionSteps.forEach((instructionStep) => {
-    console.log("instructionStep", instructionStep);
-
-    let ingredients = document.createElement("ul");
+    /*     console.log("instructionStep", instructionStep);
+     */
+    let ingredients = document.createElement("p");
     ingredients.innerHTML = instructionStep.number + ":" + instructionStep.step;
 
     instructionContainer.appendChild(ingredients);
 
-    instructionStep.ingredients.forEach((yourIngredient) => {
-      console.log("yourIngredient", yourIngredient.image);
-      let ingredientImg = document.createElement("img");
-      ingredientImg.setAttribute("src", yourIngredient.image);
-      instructionStep.equipment.forEach((equipment) => {
-        console.log("equipment", equipment);
-      });
+    if (instructionStep.length) {
+      //create a new text with the length
+
+      const cookingLength = instructionStep.length.number;
+      const cookingUnit = instructionStep.length.unit;
+
+      console.log("cookingLength", cookingLength);
+      console.log("cookingUnit", cookingUnit);
+    }
+
+    /* instructionStep.ingredients.forEach((yourIngredient) => {
+      
+      
+    }); */
+
+    instructionStep.equipment.forEach((equipment) => {
+      /*         console.log("equipment", equipment);
+       */
     });
   });
 }
