@@ -1,25 +1,18 @@
-// let title = "";
-// console.log(title);
-/* let equipment = "";
-let recipeInstructions = "";
-let ingredients = "";
-let steps = ""; */
-
 // after creating the HTML-file "recipeinstructions.html"-> next steps: "instructions.js" , where I write a onload-function with my search Paremeters ( I need the recipe ID and the instructions) and make my request using the ...
-//*... FETCH API: ======================================================================
 
+//*... FETCH API: ======================================================================
 window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const title = urlParams.get("name");
   const h6 = document.querySelector("h6");
   h6.innerHTML += " " + title;
 
-  console.log("urlParams", urlParams);
+  // console.log("urlParams", urlParams);
   console.log("title", title);
 
   const recipeId = urlParams.get("id");
   // if I use "myParam" -> I get also the same ID like with "recipeId":console.log("myParam", recipeId);
-  console.log("recipeId", recipeId);
+  // console.log("recipeId", recipeId);
   getInstructions(recipeId);
 };
 
@@ -37,7 +30,7 @@ function getInstructions(recipesId) {
       // sending cleaned data ---> instructionSteps
       allIngredients(instructionSteps);
       displayRecipesInstructions(instructionSteps);
-      console.log("fetched instructions>>>", data);
+      // console.log("fetched instructions>>>", data);
     })
     .catch(function (error) {
       console.log("error", error);
@@ -67,6 +60,8 @@ function getInstructions(recipesId) {
 function allIngredients(instructionSteps) {
   console.log("instructionSteps", instructionSteps);
   const allIngredientsForRecipes = [];
+
+  // TODO create equipment array
   for (let i = 0; i < instructionSteps.length; i++) {
     /* console.log(
       "instructionSteps[i].ingredients",
@@ -76,32 +71,44 @@ function allIngredients(instructionSteps) {
     for (let g = 0; g < ingredientsArray.length; g++) {
       console.log("ingredientsArray[g]", ingredientsArray[g]);
       console.log("ingredientsArray[g].name", ingredientsArray[g].name);
-      // if allIngredientsForRecipes does not include the current ingredient name, push it
+      // TODO if allIngredientsForRecipes does not include the current ingredient name, push it
       if (!allIngredientsForRecipes.includes(ingredientsArray[g].name)) {
         allIngredientsForRecipes.push(ingredientsArray[g].name);
       }
     }
   }
+
+  // TODO loop over equipments and push equiment name into equipment array
+
   console.log("allIngredientsForRecipes", allIngredientsForRecipes);
 
   dispayListOfIngredients(allIngredientsForRecipes);
+  // TODO call function to display equipment
 }
+
+// TODO create function to display equipment
 //*========================================================================================================
+// we grab the div that will contain my list of ingredients
 const ingredientsContainer = document.getElementById("ingredientsContainer");
 console.log("ingredientsContainer", ingredientsContainer);
 function dispayListOfIngredients(allIngredientsForRecipes) {
   // display the list of ingredients (loop)
+  // create the unordered list
   let ingredients = document.createElement("ul");
-
+  //loop through all the ingredients
   allIngredientsForRecipes.forEach((allIngredientsforRecipe) => {
+    //for each ingredient we create a list item
     let ingredient = document.createElement("li");
+    // we put each ingredient into the list item element
     ingredient.innerHTML = allIngredientsforRecipe;
+    // we append the list item to the list
     ingredients.appendChild(ingredient);
 
     // 1. create in HTML a ul for ingredientsContainer
     // 2. fill with li for every ingredient
   });
   console.log("ingredient", ingredients);
+  // add the filled unordered list to the div in the HTML
   ingredientsContainer.appendChild(ingredients);
 }
 
@@ -169,23 +176,25 @@ function displayRecipesInstructions(instructionSteps) {
     instructionContainer.appendChild(ingredients);
 
     if (instructionStep.length) {
-      //create a new text with the length
+      // TODO create a new text with the length
 
       const cookingLength = instructionStep.length.number;
       const cookingUnit = instructionStep.length.unit;
 
       console.log("cookingLength", cookingLength);
       console.log("cookingUnit", cookingUnit);
+      const cookingTime = document.createElement("p");
+      cookingTime.setAttribute("class", "");
+      cookingTime.innerHTML =
+        "Cooking time: " + cookingLength + " " + cookingUnit;
+      instructionContainer.appendChild(cookingTime);
     }
 
     /* instructionStep.ingredients.forEach((yourIngredient) => {
-      
-      
-    }); */
+       }); */
 
     instructionStep.equipment.forEach((equipment) => {
-      /*         console.log("equipment", equipment);
-       */
+      console.log("equipment", equipment);
     });
   });
 }

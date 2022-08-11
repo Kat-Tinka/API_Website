@@ -24,12 +24,21 @@ div.radioButtons {
   align-items: center;
 }
 
+/* CHECKBOXES div.form-check-input {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+} */
+
 /* Nav-Bar Search Button Hover */
 .buttonOverwrite:hover {
   border-color: white;
   background-color: #198754;
   color: white;
 }
+
+/* .buttonoverwrite: {
+} */
 
 /* back-ground Color overwrite Bootstrap Style (color) */
 /* .backgroundColorOverwrite:content */
@@ -40,4 +49,12 @@ div.radioButtons {
 
 .pointer-cursor {
   cursor: pointer;
+}
+
+#btnCheckAll {
+  background-color: white;
+  color: black;
+}
+#btnCheckAll:hover {
+  color: #198754;
 }

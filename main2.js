@@ -1,15 +1,15 @@
 //*function of "Hide & Show Button" for more and less Broccoli-Infos===========================================================================================
-function showHide() {
+function showHide(event) {
   let mySecondaryText = document.getElementById("secondary-text");
   let isHidden = Array.from(mySecondaryText.classList).includes("hide");
   if (isHidden === true) {
     mySecondaryText.classList.remove("hide");
     mySecondaryText.classList.add("show");
-    event1.target.innerHTML = "Read Less";
+    event.target.innerHTML = "Read Less";
   } else {
     mySecondaryText.classList.remove("show");
     mySecondaryText.classList.add("hide");
-    event1.target.innerText = "Read More";
+    event.target.innerText = "Read More";
   }
 }
 
@@ -26,7 +26,7 @@ function getData(myIngredient, diet, cuisine, recipesId) {
   // console.log("getInstructions", getInstructions);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-process of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block (not outside!)
   //* Fetch 1: myIngredient, diet, cuisine ======================================================
-  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=14&diet=${diet}&cuisine=${cuisine}`;
+  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
   console.log(url1);
   fetch(url1)
     .then(function (response) {
