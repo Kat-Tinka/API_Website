@@ -1,6 +1,7 @@
 // after creating the HTML-file "recipeinstructions.html"-> next steps: "instructions.js" , where I write a onload-function with my search Paremeters ( I need the recipe ID and the instructions) and make my request using the ...
 
 //*... FETCH API: ======================================================================
+let apiKey = "API_KEY2";
 window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const title = urlParams.get("name");
@@ -18,7 +19,7 @@ window.onload = function () {
 
 function getInstructions(recipesId) {
   // TODO  fetch the recipes steps (first use the url from postman with saved exampel-id:324694-> this works)-> now check live data:
-  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&stepBreakdown=true`;
+  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=3051f5e3ddb849588d48b1ecd14676f9&stepBreakdown=true`;
   fetch(url2)
     .then(function (response2) {
       return response2.json();
