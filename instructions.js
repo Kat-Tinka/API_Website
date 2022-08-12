@@ -1,7 +1,7 @@
 // after creating the HTML-file "recipeinstructions.html"-> next steps: "instructions.js" , where I write a onload-function with my search Paremeters ( I need the recipe ID and the instructions) and make my request using the ...
 
 //*... FETCH API: ======================================================================
-let apiKey = "API_KEY2";
+let apiKey = "";
 window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const title = urlParams.get("name");
@@ -19,7 +19,7 @@ window.onload = function () {
 
 function getInstructions(recipesId) {
   // TODO  fetch the recipes steps (first use the url from postman with saved exampel-id:324694-> this works)-> now check live data:
-  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=3051f5e3ddb849588d48b1ecd14676f9&stepBreakdown=true`;
+  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=${API_KEY4}&stepBreakdown=true`;
   fetch(url2)
     .then(function (response2) {
       return response2.json();
@@ -63,6 +63,8 @@ function allIngredients(instructionSteps) {
   const allIngredientsForRecipes = [];
 
   // TODO create equipment array
+  /* const equipment = [];
+  const equipmentList = document.createElement("ul"); */
   for (let i = 0; i < instructionSteps.length; i++) {
     /* console.log(
       "instructionSteps[i].ingredients",
@@ -191,13 +193,32 @@ function displayRecipesInstructions(instructionSteps) {
       instructionContainer.appendChild(cookingTime);
     }
 
+    const equipmentArray = instructionStep.equipment;
+    const equipmentList = document.createElement("ul");
+
+    equipmentArray.forEach((equipmentItem) => {
+      const item = document.createElement("li");
+      item.innerHTML = equipmentItem.name;
+      equipmentList.appendChild(item);
+    });
+    instructionContainer.appendChild(equipmentList);
+
     /* instructionStep.ingredients.forEach((yourIngredient) => {
        }); */
-
-    instructionStep.equipment.forEach((equipment) => {
-      console.log("equipment", equipment);
-    });
   });
+
+  // const equipmentList = document.createElement("ul");
+  // for (let eq = 0; eq < instructionSteps[eq].equipment.length; eq++) {
+  //   console.log(
+  //     "instructionSteps[eq].equipment",
+  //     instructionSteps[eq].equipment
+  //   );
+  //   const equipmentItem = document.createElement("li");
+  //   equipmentItem.innerHTML = instructionSteps[eq].equipment[0].name;
+  //   equipmentList.appendChild(equipmentItem);
+  //   console.log("equipmentItem", equipmentItem);
+  // }
+  // instructionContainer.appendChild(equipmentList);
 }
 
 //! (What about this?:)
