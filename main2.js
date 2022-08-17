@@ -24,7 +24,7 @@ function getData(myIngredient, diet) {
   console.log(1);
   //if javaScript tries to create Cards with data, that is not there yet-> the website will crush-> the whole fetch-proccess of the fetch function takes much longer than just creating cards -> because of this process with promises, you will see the asynchrony=> you will see the console.log-order:1,3,2.This is also the reason, why your data from an API is only available inside a .then-block ( not outside!)
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=2&diet=${diet}`
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=10&diet=${diet}`
   )
     .then(function (response) {
       //   console.log("response", response); -> with console.log, you can check if the response was fine,not a must

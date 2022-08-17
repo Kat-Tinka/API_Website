@@ -29,7 +29,7 @@ function getData(myIngredient, diet, cuisine, recipesId) {
   console.log("recipesId", recipesId);
 
   //* FETCH 1: myIngredient, diet, cuisine ======================================================
-  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY4}&query=${myIngredient}&number=4&diet=${diet}&cuisine=${cuisine}`;
+  const url1 = `https://api.spoonacular.com/recipes/complexSearch?apiKey=7a3ba6f9de424363a2a5db9bbdd2cef7&query=${myIngredient}&number=10&diet=${diet}&cuisine=${cuisine}`;
   console.log(url1);
   fetch(url1)
     .then(function (response) {
