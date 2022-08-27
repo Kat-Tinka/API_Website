@@ -24,7 +24,7 @@ function getData() {
   console.log(3);
 }
 
-// console.log(findByIngredientsData);
+console.log(findByIngredientsData);
 // console.log("findByIngredientsData :>> ", findByIngredientsData[1].title);
 // general container called myContainer
 const myContainer = document.getElementById("container");
