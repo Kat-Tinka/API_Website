@@ -19,7 +19,7 @@ window.onload = function () {
 
 function getInstructions(recipesId) {
   // TODO  fetch the recipes steps (first use the url from postman with saved exampel-id:324694-> this works)-> now check live data:
-  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=${API_KEY4}&stepBreakdown=true`;
+  const url2 = `https://api.spoonacular.com/recipes/${recipesId}/analyzedInstructions?apiKey=bd1c7921086d472db5785a2dfd295b73&stepBreakdown=true`;
   fetch(url2)
     .then(function (response2) {
       return response2.json();
